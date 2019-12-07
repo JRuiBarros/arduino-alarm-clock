@@ -36,7 +36,7 @@ void loop() {
    
 }
 
-void hPrint(short i) {
+void hPrint(uint8_t i) {
   if (i < 10){
     lcd.print("0");
   }
