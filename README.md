@@ -17,7 +17,7 @@
 
 #### Trigger alarm:
 -  System triggers an enabled alarm when the current time is equal to the alarm value.
--  User can:
+-  User can either:
    - Turn the alarm off.
    - Activate a snooze function.
 
