@@ -20,10 +20,10 @@ void setup() {
   // This is needed because reasons
   Mode::m_display.begin();
   
-//  Serial.begin(9600);
-//  while (!Serial) {
-//    ; // wait for serial port to connect. Needed for Native USB only
-//  }
+  Serial.begin(9600);
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for Native USB only
+  }
 }
 
 void loop() {

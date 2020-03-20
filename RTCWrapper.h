@@ -1,7 +1,11 @@
 #pragma once
+#include <SparkFunDS3234RTC.h>
 #define DS13074_CS_PIN 10 // DeadOn RTC Chip-select pin
 
 class RTCWrapper {
+  private:
+    uint8_t BCDtoDEC(uint8_t val);
+    int readRegister(DS3234_registers regVal);
 	public:
 		RTCWrapper();
 		int getHour();
