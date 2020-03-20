@@ -43,12 +43,12 @@ void Mode::displayAlarm1(){
    // get time values
   int hour = m_rtc.getA1Hour();
   int min = m_rtc.getA1Minute();
-  m_display.displayTime(hour, min);
+  m_display.displayAlarm1(hour, min);
 }
 
 void Mode::displayAlarm2(){
    // get time values
   int hour = m_rtc.getA2Hour();
   int min = m_rtc.getA2Minute();
-  m_display.displayTime(hour, min);
+  m_display.displayAlarm2(hour, min);
 }
