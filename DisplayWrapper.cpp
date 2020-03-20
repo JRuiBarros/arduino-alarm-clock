@@ -32,3 +32,8 @@ void DisplayWrapper::displayAlarm2(int hour, int minute){
   clockDisplay.writeDigitRaw(2, 0x08);
   clockDisplay.writeDisplay();
 }
+
+void DisplayWrapper::displayBlank(){
+  clockDisplay.clear();
+  clockDisplay.writeDisplay();
+}

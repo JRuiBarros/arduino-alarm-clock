@@ -13,7 +13,7 @@ Mode alarm2Mode(2,1,0);
 
 Mode modes[] = {timeMode, alarm1Mode, alarm2Mode};
 
-Mode currentMode = timeMode;
+Mode* currentMode = &timeMode;
 
 void setup() {
 
@@ -27,7 +27,7 @@ void setup() {
 }
 
 void loop() {
-   int mode = currentMode.pollButtons();
-   currentMode = modes[mode];
-   currentMode.display();
+   int mode = currentMode->pollButtons();
+   currentMode = &modes[mode];
+   currentMode->display();
 }

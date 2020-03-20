@@ -8,12 +8,12 @@
 class DisplayWrapper {
 	private:
     Adafruit_7segment clockDisplay;
+    void displayHours(int hour, int minute);
 	public:
 		DisplayWrapper();
     void begin();
     void displayAlarm1(int hour, int minute);
     void displayAlarm2(int hour, int minute);
 		void displayTime(int hour, int minute);
-    void displayHours(int hour, int minute);
-
+    void displayBlank();
 };
