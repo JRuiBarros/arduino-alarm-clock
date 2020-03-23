@@ -8,7 +8,6 @@ void DisplayWrapper::begin(){
   clockDisplay.begin(DISPLAY_ADDRESS);
 }
 
-
 void DisplayWrapper::displayTime(int hour, int minute, bool alarm1, bool alarm2){
   displayHours(hour, minute);
   if(alarm1 && alarm2){

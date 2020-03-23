@@ -7,7 +7,20 @@ Mode::Mode(int c, int b1, int b2){
 }
 
 int Mode::pollButtons(){
-
+  
+  buttons.readButtons();
+  
+  if(curr == 0){
+    if(buttons.wasB1LongPressed()){
+      m_rtc.toggleAlarm1();
+      return curr;
+    }
+    if(buttons.wasB2LongPressed()){
+      m_rtc.toggleAlarm2();
+      return curr;
+    }
+  }
+  
   int ret = curr;
 	if (buttons.wasB1Released()){
     ret = retB1;
@@ -38,7 +51,7 @@ void Mode::displayCurrent(){
    // get time values
   int hour = m_rtc.getHour();
   int min = m_rtc.getMinute();
-  m_display.displayTime(hour, min, false, false);
+  m_display.displayTime(hour, min, m_rtc.isAlarm1(), m_rtc.isAlarm2());
 }
 
 void Mode::displayAlarm1(){

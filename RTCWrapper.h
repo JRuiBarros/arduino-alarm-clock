@@ -6,6 +6,7 @@ class RTCWrapper {
   private:
     uint8_t BCDtoDEC(uint8_t val);
     int readRegister(DS3234_registers regVal);
+    void disableINTCN();
 	public:
 		RTCWrapper();
 		int getHour();
@@ -14,4 +15,8 @@ class RTCWrapper {
     int getA1Minute();
     int getA2Hour();
     int getA2Minute();
+    bool isAlarm1();
+    bool isAlarm2();
+    void toggleAlarm1();
+    void toggleAlarm2();
 };
