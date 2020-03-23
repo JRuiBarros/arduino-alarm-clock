@@ -14,6 +14,6 @@ class DisplayWrapper {
     void begin();
     void displayAlarm1(int hour, int minute);
     void displayAlarm2(int hour, int minute);
-		void displayTime(int hour, int minute);
+		void displayTime(int hour, int minute, bool alarm1, bool alarm2);
     void displayBlank();
 };

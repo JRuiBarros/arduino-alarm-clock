@@ -9,9 +9,17 @@ void DisplayWrapper::begin(){
 }
 
 
-void DisplayWrapper::displayTime(int hour, int minute){
+void DisplayWrapper::displayTime(int hour, int minute, bool alarm1, bool alarm2){
   displayHours(hour, minute);
-  clockDisplay.drawColon(true);
+  if(alarm1 && alarm2){
+    clockDisplay.drawColon(true);
+  }
+  else if(alarm1){
+    clockDisplay.writeDigitRaw(2, 0x04);
+  }
+  else if(alarm2){
+    clockDisplay.writeDigitRaw(2, 0x08);
+  }
   clockDisplay.writeDisplay();
 }
 
