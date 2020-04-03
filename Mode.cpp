@@ -65,7 +65,7 @@ void Mode::displayAlarm1(){
         // get time values
         int hour = m_rtc.getA1Hour();
         int min = m_rtc.getA1Minute();
-        m_display.displayTime(hour, min, false, true);
+        m_display.displayTime(hour, min, true, false);
         isBlink = false;
       } else {
         m_display.displayBlank();
@@ -85,7 +85,7 @@ void Mode::displayAlarm2(){
         // get time values
         int hour = m_rtc.getA2Hour();
         int min = m_rtc.getA2Minute();
-        m_display.displayTime(hour, min, true, false);
+        m_display.displayTime(hour, min, false, true);
         isBlink = false;
       } else {
         m_display.displayBlank();
