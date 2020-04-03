@@ -40,10 +40,10 @@ void Mode::display(){
     displayCurrent();
   }
   else if(curr == 1){
-    displayAlarm1();
+    displayAlarm(m_rtc.getA1Hour(), m_rtc.getA1Minute(), true, false);
   }
    else {
-    displayAlarm2();
+    displayAlarm(m_rtc.getA2Hour(), m_rtc.getA2Minute(), false, true);
   }
 }
 
@@ -54,38 +54,14 @@ void Mode::displayCurrent(){
   m_display.displayTime(hour, min, m_rtc.isAlarm1(), m_rtc.isAlarm2());
 }
 
-void Mode::displayAlarm1(){
-  unsigned long currentMillis = millis();
-  Serial.println(previousMillis);
-  if (currentMillis - previousMillis >= interval) {
+void Mode::displayAlarm(int hour, int min, bool alarm1, bool alarm2){
+   unsigned long currentMillis = millis();
+   if (currentMillis - previousMillis >= interval) {
       // save the last time you blinked the LED
       previousMillis = currentMillis;
 
       if(isBlink){
-        // get time values
-        int hour = m_rtc.getA1Hour();
-        int min = m_rtc.getA1Minute();
-        m_display.displayTime(hour, min, true, false);
-        isBlink = false;
-      } else {
-        m_display.displayBlank();
-        isBlink = true;
-      }
-  }
-}
-
-void Mode::displayAlarm2(){
-  unsigned long currentMillis = millis();
-  Serial.println(previousMillis);
-  if (currentMillis - previousMillis >= interval) {
-      // save the last time you blinked the LED
-      previousMillis = currentMillis;
-
-      if(isBlink){
-        // get time values
-        int hour = m_rtc.getA2Hour();
-        int min = m_rtc.getA2Minute();
-        m_display.displayTime(hour, min, false, true);
+        m_display.displayTime(hour, min, alarm1, alarm2);
         isBlink = false;
       } else {
         m_display.displayBlank();

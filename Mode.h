@@ -6,8 +6,7 @@
 class Mode {
 	private:
     void displayCurrent();
-    void displayAlarm1();
-    void displayAlarm2();
+    void displayAlarm(int hour, int min, bool alarm1, bool alarm2);
 	  boolean isBlink = true;
 	  // Generally, you should use "unsigned long" for variables that hold time  
     // The value will quickly become too large for an int to store
