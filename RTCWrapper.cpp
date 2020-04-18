@@ -10,7 +10,6 @@ RTCWrapper::RTCWrapper(){
 
   rtc.setAlarm1(255, 10, 11);
   rtc.setAlarm2(22, 22);
-  rtc.enableAlarmInterrupt(false, false);
 } 
 
 void RTCWrapper::toggleAlarm1(){
