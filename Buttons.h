@@ -7,6 +7,7 @@ private:
 	Button b1;
 	Button b2;
 	unsigned long LONG_PRESS = 1000; // we define a "long press" to be 1000 milliseconds.
+	bool inLongPress = false;
 public:
 	Buttons(int p1, int p2);
 	void readButtons();
