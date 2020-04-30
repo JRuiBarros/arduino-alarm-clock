@@ -14,42 +14,46 @@ void Buttons::readButtons()
 
 boolean Buttons::wasB1Released()
 {
-  if (inLongPress)
+  bool ret = b1.wasReleased();
+  if (ret && inLongPress)
   {
     inLongPress = false;
+    return false;
   }
-  else
-  {
-    return b1.wasReleased();
-  }
+  return ret;
 }
 
 boolean Buttons::wasB2Released()
 {
-  if (inLongPress)
+  bool ret = b2.wasReleased();
+  if (ret && inLongPress)
   {
     inLongPress = false;
+    return false;
   }
-  else
-  {
-    return b2.wasReleased();
-  }
+  return ret;
 }
 
 boolean Buttons::wasB1LongPressed()
 {
   if (!inLongPress)
   {
-    inLongPress = true;
-    return b1.pressedFor(LONG_PRESS);
+    bool ret = b1.pressedFor(LONG_PRESS);
+    inLongPress = ret;
+    return ret;
   }
+
+  return false;
 }
 
 boolean Buttons::wasB2LongPressed()
 {
   if (!inLongPress)
   {
-    inLongPress = true;
-    return b2.pressedFor(LONG_PRESS);
+    bool ret = b2.pressedFor(LONG_PRESS);
+    inLongPress = ret;
+    return ret;
   }
+
+  return false;
 }
