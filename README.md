@@ -26,3 +26,7 @@
 - System starts playing the white noise music file.
 - User can adjust the volume with dedicated buttons.
 - User presses the "on" button to turn off the noise.
+
+#### Adjust screen brightness:
+<!--- User adjusts the screen brightness using a potentiometer.?? - Do this first -->
+- System adjusts the screen brightness according to the ambient light.
