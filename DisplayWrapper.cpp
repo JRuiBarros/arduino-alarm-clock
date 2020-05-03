@@ -34,3 +34,9 @@ void DisplayWrapper::displayBlank(){
   clockDisplay.clear();
   clockDisplay.writeDisplay();
 }
+
+void DisplayWrapper::displayTemperature(float temp){
+  clockDisplay.printFloat(temp);
+  clockDisplay.writeDigitRaw(2, 0);
+  clockDisplay.writeDisplay();
+}

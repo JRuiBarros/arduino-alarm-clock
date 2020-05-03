@@ -14,4 +14,5 @@ class DisplayWrapper {
     void begin();
 		void displayTime(int hour, int minute, bool alarm1, bool alarm2);
     void displayBlank();
+    void displayTemperature(float temp); 
 };
