@@ -8,9 +8,12 @@ CButton b2(3);
 CButton iMode::buttons[] = {b1, b2};
 DisplayWrapper iMode::m_display;
 
-CurrentTime timeMode;
-Alarm1 alarm1Mode;
-Alarm2 alarm2Mode;
+int a[] = {0, 1, 2};
+CurrentTime timeMode(a);
+int b[] = {1, 0, 2};
+Alarm1 alarm1Mode(b);
+int c[] = {2, 1, 0};
+Alarm2 alarm2Mode(c);
 
 iMode *modes[] = {&timeMode, &alarm1Mode, &alarm2Mode};
 

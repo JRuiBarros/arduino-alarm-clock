@@ -2,7 +2,7 @@
 
 int CurrentTime::pollButtons()
 {
-    iMode::pollButtons();
+    int ret = iMode::pollButtons();
 
     if (buttons[0].wasLongPressed())
     {
@@ -16,17 +16,7 @@ int CurrentTime::pollButtons()
         return 0;  
     }
 
-    if (buttons[0].wasReleased())
-    {
-        return 1;
-    }
-
-    if (buttons[1].wasReleased())
-    {
-        return 2;
-    }
-
-    return 0;
+    return ret;
 }
 
 void CurrentTime::display()

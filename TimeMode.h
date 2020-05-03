@@ -5,6 +5,7 @@
 class TimeMode: public iMode
 {
     public:
+        using iMode::iMode;
         static RTCWrapper m_rtc;
     protected:
         // Generally, you should use "unsigned long" for variables that hold time

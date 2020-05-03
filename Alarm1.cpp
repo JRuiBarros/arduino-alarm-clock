@@ -2,18 +2,9 @@
 
 int Alarm1::pollButtons()
 {
-    iMode::pollButtons();
+    int ret = iMode::pollButtons();
 
-    int ret = 1;
-    if (buttons[0].wasReleased())
-    {
-        ret = 0;
-    }
-    if (buttons[1].wasReleased())
-    {
-        ret = 2;
-    }
-    if (ret != 1)
+    if (ret != rets[0])
     {
         isBlink = true;
         previousMillis = 0;
