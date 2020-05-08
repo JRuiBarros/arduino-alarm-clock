@@ -17,5 +17,9 @@ class TimeMode: public iMode
         // constants won't change:
         long interval = 500; // interval at which to blink (milliseconds)
         
+        int m_setMode = 0;
+
+        int setMode();
+        
         // virtual void lel() = 0;
 };

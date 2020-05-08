@@ -2,21 +2,34 @@
 
 int CurrentTime::pollButtons()
 {
-    int ret = iMode::pollButtons();
-
-    if (buttons[0].wasLongPressed())
+    if (m_setMode != 0)
     {
-        m_rtc.toggleAlarm1();
-        return 0;
+        return TimeMode::setMode();
     }
-
-    if (buttons[1].wasLongPressed())
+    else
     {
-        m_rtc.toggleAlarm2();
-        return 0;  
-    }
+        int ret = iMode::pollButtons();
 
-    return ret;
+        if (buttons[0].wasLongPressed())
+        {
+            m_rtc.toggleAlarm1();
+            return 0;
+        }
+
+        if (buttons[1].wasLongPressed())
+        {
+            m_rtc.toggleAlarm2();
+            return 0;
+        }
+
+        if (buttons[2].wasLongPressed())
+        {
+            m_setMode = 1;
+            return 0;
+        }
+
+        return ret;
+    }
 }
 
 void CurrentTime::display()
