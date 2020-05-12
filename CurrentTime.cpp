@@ -1,5 +1,6 @@
 #include "CurrentTime.h"
 
+//TODO This logic should be on the parent class using the template patttern
 int CurrentTime::pollButtons()
 {
     if (m_setMode != 0)

@@ -19,6 +19,7 @@ class TimeMode: public iMode
         
         int m_setMode = 0;
 
+        // TODO Work on this
         int setMode();
         
         // virtual void lel() = 0;

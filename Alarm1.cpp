@@ -4,6 +4,7 @@ int Alarm1::pollButtons()
 {
     int ret = iMode::pollButtons();
 
+    //TODO This should be on the parent class together with the logic on the CurrentTime.cpp file.
     if (ret != rets[0])
     {
         isBlink = true;
@@ -12,6 +13,7 @@ int Alarm1::pollButtons()
     return ret;
 }
 
+// TODO This should be on the parent class as well.
 void Alarm1::display()
 {
   unsigned long currentMillis = millis();
