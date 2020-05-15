@@ -3,7 +3,7 @@
 void TempMode::begin()
 {
     bmp.begin();
-    
+
     /* Default settings from datasheet. */
     bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,     /* Operating Mode. */
                     Adafruit_BMP280::SAMPLING_X2,     /* Temp. oversampling */
@@ -12,6 +12,13 @@ void TempMode::begin()
                     Adafruit_BMP280::STANDBY_MS_500); /* Standby time. */
 }
 
-void TempMode::display(){
+int TempMode::pollButtons()
+{
+    readButtons();
+    iMode::pollButtons();
+}
+
+void TempMode::display()
+{
     m_display.displayTemperature(bmp.readTemperature());
 }

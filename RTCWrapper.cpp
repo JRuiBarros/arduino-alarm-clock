@@ -63,6 +63,20 @@ void RTCWrapper::processMinute(int mode, bool inc)
   }
 }
 
+void RTCWrapper::processHour(bool inc)
+{
+  int currHour = rtc.getHour();
+  currHour = processVal(currHour, 24, inc);
+  rtc.setHour(currHour);
+}
+
+void RTCWrapper::processMinute(bool inc)
+{
+  int currMin = rtc.getMinute();
+  currMin = processVal(currMin, 60, inc);
+  rtc.setMinute(currMin);
+}
+
 int RTCWrapper::processVal(int val, int max, bool inc)
 {
   if (inc)

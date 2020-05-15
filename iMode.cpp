@@ -4,12 +4,15 @@ iMode::iMode(int p_rets[]) : rets{p_rets}
 {
 }
 
-int iMode::pollButtons()
+void iMode::readButtons()
 {
     buttons[0].read();
     buttons[1].read();
     buttons[2].read();
+}
 
+int iMode::pollButtons()
+{
     int ret = rets[0];
 
     if (buttons[0].wasReleased())

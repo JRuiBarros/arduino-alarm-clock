@@ -6,6 +6,7 @@ class iMode
 {
     protected:
         int *rets;
+        void readButtons();
     public:
         static DisplayWrapper m_display;
 	    static CButton buttons[];
@@ -14,4 +15,5 @@ class iMode
         virtual int pollButtons();
         virtual void display() = 0;
         static void beginButtons();
+
 };

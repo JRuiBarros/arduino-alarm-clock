@@ -32,4 +32,6 @@ public:
   bool isAlarm2();
   void toggleAlarm1();
   void toggleAlarm2();
+  void processHour(bool inc);
+  void processMinute(bool inc);
 };

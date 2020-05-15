@@ -9,7 +9,7 @@ class TempMode: public iMode
     public:
         using iMode::iMode;
         // TempMode(int p_ret[]);
-        // virtual int pollButtons();
+        virtual int pollButtons();
         virtual void display();
         void begin();
 };

@@ -16,7 +16,7 @@ int b[] = {1, 0, 2, 3};
 Alarm1 alarm1Mode(b);
 int c[] = {2, 1, 0, 3};
 Alarm2 alarm2Mode(c);
-int d[] = {3, 3, 3, 0};
+int d[] = {3, 1, 2, 0};
 TempMode tempMode(d);
 
 iMode *modes[] = {&timeMode, &alarm1Mode, &alarm2Mode, &tempMode};
