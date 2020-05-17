@@ -2,36 +2,34 @@
 #include <SparkFunDS3234RTC.h>
 #define DS13074_CS_PIN 10 // DeadOn RTC Chip-select pin
 
-class RTCWrapper // Extend here
+class RTCWrapper : public DS3234
 {
 private:
-  uint8_t BCDtoDEC(uint8_t val);
-  uint8_t DECtoBCD(uint8_t val);
-  int readRegister(DS3234_registers regVal);
-  void writeRegister(DS3234_registers regVal, uint8_t data);
+  
+  // Copied from the parent class source code as they are private functions there
+  uint8_t BCDtoDEC(uint8_t val) { return ((val / 0x10) * 10) + (val % 0x10); }
+  uint8_t DECtoBCD(uint8_t val) { return ((val / 10) * 0x10) + (val % 10); }
+  
+  int readRegister(DS3234_registers regVal) { return BCDtoDEC(readFromRegister(regVal)); }
+  void writeRegister(DS3234_registers regVal, uint8_t data) { writeToRegister(regVal, DECtoBCD(data)); }
+
   void disableINTCN();
-  //TODO Change this
   int processVal(int val, int max, bool inc);
 
 public:
-  //TODO delete this
   RTCWrapper();
-  //TODO Change this
-  void processHour(int mode, bool inc);
-  //TODO Change this
-  void processMinute(int mode, bool inc);
-  //TODO Delete this
-  int getHour();
-  //TODO Delete this
-  int getMinute();
-  int getA1Hour();
-  int getA1Minute();
-  int getA2Hour();
-  int getA2Minute();
-  bool isAlarm1();
-  bool isAlarm2();
+
+  int getA1Hour() { return readRegister(DS3234_REGISTER_A1HR); }
+  int getA1Minute() { return readRegister(DS3234_REGISTER_A1MIN); }
+  int getA2Hour() { return readRegister(DS3234_REGISTER_A2HR); }
+  int getA2Minute() { return readRegister(DS3234_REGISTER_A2MIN); }
+
+  bool isAlarm1() { return readFromRegister(DS3234_REGISTER_CONTROL) & 0x01; }
+  bool isAlarm2() { return (readFromRegister(DS3234_REGISTER_CONTROL) >> 1) & 0x01; }
+
   void toggleAlarm1();
   void toggleAlarm2();
+
   void processHour(bool inc);
   void processMinute(bool inc);
 };
