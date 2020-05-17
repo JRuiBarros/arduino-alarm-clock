@@ -13,56 +13,6 @@ RTCWrapper::RTCWrapper() : DS3234{}
   setAlarm2(22, 22);
 }
 
-// void RTCWrapper::processHour(int mode, bool inc)
-// {
-
-//   int currHour;
-
-//   switch (mode)
-//   {
-//   case 0:
-//     currHour = rtc.getHour();
-//     currHour = processVal(currHour, 24, inc);
-//     rtc.setHour(currHour);
-//     break;
-//   case 1:
-//     currHour = getA1Hour();
-//     currHour = processVal(currHour, 24, inc);
-//     writeRegister(DS3234_REGISTER_A1HR, currHour);
-//     break;
-//   case 2:
-//     currHour = getA2Hour();
-//     currHour = processVal(currHour, 24, inc);
-//     writeRegister(DS3234_REGISTER_A2HR, currHour);
-//     break;
-//   }
-// }
-
-// void RTCWrapper::processMinute(int mode, bool inc)
-// {
-
-//   int currHour;
-
-//   switch (mode)
-//   {
-//   case 0:
-//     currHour = rtc.getMinute();
-//     currHour = processVal(currHour, 60, inc);
-//     rtc.setMinute(currHour);
-//     break;
-//   case 1:
-//     currHour = getA1Minute();
-//     currHour = processVal(currHour, 60, inc);
-//     writeRegister(DS3234_REGISTER_A1MIN, currHour);
-//     break;
-//   case 2:
-//     currHour = getA2Minute();
-//     currHour = processVal(currHour, 60, inc);
-//     writeRegister(DS3234_REGISTER_A2MIN, currHour);
-//     break;
-//   }
-// }
-
 void RTCWrapper::processHour(bool inc)
 {
   int currHour = getHour();
@@ -75,6 +25,34 @@ void RTCWrapper::processMinute(bool inc)
   int currMin = getMinute();
   currMin = processVal(currMin, 60, inc);
   setMinute(currMin);
+}
+
+void RTCWrapper::processA1Hour(bool inc)
+{
+  int currHour = getA1Hour();
+  currHour = processVal(currHour, 24, inc);
+  writeRegister(DS3234_REGISTER_A1HR, currHour);
+}
+
+void RTCWrapper::processA1Minute(bool inc)
+{
+  int currMin = getA1Minute();
+  currMin = processVal(currMin, 60, inc);
+  writeRegister(DS3234_REGISTER_A1MIN, currMin);
+}
+
+void RTCWrapper::processA2Hour(bool inc)
+{
+  int currHour = getA2Hour();
+  currHour = processVal(currHour, 24, inc);
+  writeRegister(DS3234_REGISTER_A2HR, currHour);
+}
+
+void RTCWrapper::processA2Minute(bool inc)
+{
+  int currMin = getA2Minute();
+  currMin = processVal(currMin, 60, inc);
+  writeRegister(DS3234_REGISTER_A2MIN, currMin);
 }
 
 int RTCWrapper::processVal(int val, int max, bool inc)

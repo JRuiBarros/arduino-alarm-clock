@@ -32,4 +32,10 @@ public:
 
   void processHour(bool inc);
   void processMinute(bool inc);
+  
+  void processA1Hour(bool inc);
+  void processA1Minute(bool inc);
+
+  void processA2Hour(bool inc);
+  void processA2Minute(bool inc);
 };
