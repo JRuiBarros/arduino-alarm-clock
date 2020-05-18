@@ -14,7 +14,7 @@ private:
   void writeRegister(DS3234_registers regVal, uint8_t data) { writeToRegister(regVal, DECtoBCD(data)); }
 
   void disableINTCN();
-  int processVal(int val, int max, bool inc);
+  void processTime(DS3234_registers reg, bool inc, int max);
 
 public:
   RTCWrapper();
@@ -30,12 +30,12 @@ public:
   void toggleAlarm1();
   void toggleAlarm2();
 
-  void processHour(bool inc);
-  void processMinute(bool inc);
+  void processHour(bool inc){processTime(DS3234_REGISTER_HOURS, inc, 24);}
+  void processMinute(bool inc){processTime(DS3234_REGISTER_MINUTES, inc, 60);}
   
-  void processA1Hour(bool inc);
-  void processA1Minute(bool inc);
+  void processA1Hour(bool inc){processTime(DS3234_REGISTER_A1HR, inc, 24);}
+  void processA1Minute(bool inc){processTime(DS3234_REGISTER_A1MIN, inc, 60);}
 
-  void processA2Hour(bool inc);
-  void processA2Minute(bool inc);
+  void processA2Hour(bool inc){processTime(DS3234_REGISTER_A2HR, inc, 24);}
+  void processA2Minute(bool inc){processTime(DS3234_REGISTER_A2MIN, inc, 60);}
 };

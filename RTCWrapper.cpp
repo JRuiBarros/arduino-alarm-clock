@@ -13,50 +13,9 @@ RTCWrapper::RTCWrapper() : DS3234{}
   setAlarm2(22, 22);
 }
 
-void RTCWrapper::processHour(bool inc)
+void RTCWrapper::processTime(DS3234_registers reg, bool inc, int max)
 {
-  int currHour = getHour();
-  currHour = processVal(currHour, 24, inc);
-  setHour(currHour);
-}
-
-void RTCWrapper::processMinute(bool inc)
-{
-  int currMin = getMinute();
-  currMin = processVal(currMin, 60, inc);
-  setMinute(currMin);
-}
-
-void RTCWrapper::processA1Hour(bool inc)
-{
-  int currHour = getA1Hour();
-  currHour = processVal(currHour, 24, inc);
-  writeRegister(DS3234_REGISTER_A1HR, currHour);
-}
-
-void RTCWrapper::processA1Minute(bool inc)
-{
-  int currMin = getA1Minute();
-  currMin = processVal(currMin, 60, inc);
-  writeRegister(DS3234_REGISTER_A1MIN, currMin);
-}
-
-void RTCWrapper::processA2Hour(bool inc)
-{
-  int currHour = getA2Hour();
-  currHour = processVal(currHour, 24, inc);
-  writeRegister(DS3234_REGISTER_A2HR, currHour);
-}
-
-void RTCWrapper::processA2Minute(bool inc)
-{
-  int currMin = getA2Minute();
-  currMin = processVal(currMin, 60, inc);
-  writeRegister(DS3234_REGISTER_A2MIN, currMin);
-}
-
-int RTCWrapper::processVal(int val, int max, bool inc)
-{
+  int val = readRegister(reg);
   if (inc)
   {
     val = val == max - 1 ? 0 : val + 1;
@@ -65,7 +24,7 @@ int RTCWrapper::processVal(int val, int max, bool inc)
   {
     val = val == 0 ? max - 1 : val - 1;
   }
-  return val;
+  writeRegister(reg, val);
 }
 
 void RTCWrapper::toggleAlarm1()
