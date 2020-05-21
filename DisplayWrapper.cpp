@@ -36,7 +36,15 @@ void DisplayWrapper::displayBlank(){
 }
 
 void DisplayWrapper::displayTemperature(float temp){
-  clockDisplay.printFloat(temp);
-  clockDisplay.writeDigitRaw(2, 0);
+
+  // Round temperature value to one decimal case
+  float rounded = ((float)((int)(temp * 10 + .5))) / 10;
+  
+  clockDisplay.printFloat(rounded);
+
+  // Write the ºC character
+  clockDisplay.writeDigitNum(4, 0xC);
+  clockDisplay.writeDigitRaw(2, 0x10);
+  
   clockDisplay.writeDisplay();
 }
