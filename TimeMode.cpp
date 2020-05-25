@@ -8,18 +8,18 @@ int TimeMode::pollButtons()
     {
         if (buttons[0].wasReleased())
         {
-            Serial.println("SETU MODE 111111111111");
             m_setMode == 1 ? decHour() : decMin();
+            resetTimer();
         }
         if (buttons[1].wasReleased())
         {
-            Serial.println("SETU MODE 222222222222");
             m_setMode == 1 ? incHour() : incMin();
+            resetTimer();
         }
         if (buttons[2].wasReleased())
         {
-            Serial.println("SETU MODE 333333333333");
             m_setMode = m_setMode == 1 ? 2 : 0;
+            resetTimer();
         }
 
         // Returs current state
@@ -48,31 +48,60 @@ int TimeMode::pollButtons()
 
         if (ret != rets[0])
         {
-            isBlink = true;
-            previousMillis = 0;
+            resetTimer();
         }
 
         return ret;
     }
 }
 
-void TimeMode::displayAlarm(int hour, int min, bool a1, bool a2)
+boolean TimeMode::checkTimer()
 {
     unsigned long currentMillis = millis();
     if (currentMillis - previousMillis >= interval)
     {
         // save the last time you blinked the LED
         previousMillis = currentMillis;
+        isBlink = !isBlink;
+    }
+    return isBlink;
+}
 
-        if (isBlink)
+void TimeMode::display()
+{
+    int hour = getHour();
+    int min = getMin();
+    bool a1 = getA1();
+    bool a2 = getA2();
+
+    if (m_setMode != 0)
+    {
+        if (m_setMode == 1)
+        {
+            hour = !checkTimer() ? hour : -1;
+        }
+        if (m_setMode == 2)
+        {
+            min = !checkTimer() ? min : -1;
+        }
+        m_display.displayTime(hour, min, a1, a2);
+    }
+    else
+    {
+        if (hook())
         {
             m_display.displayTime(hour, min, a1, a2);
-            isBlink = false;
         }
         else
         {
-            m_display.displayBlank();
-            isBlink = true;
+            if (!checkTimer())
+            {
+                m_display.displayTime(hour, min, a1, a2);
+            }
+            else
+            {
+                m_display.displayBlank();
+            }
         }
     }
 }

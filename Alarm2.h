@@ -5,7 +5,6 @@ class Alarm2 : public TimeMode
 {
 public:
     using TimeMode::TimeMode;
-    virtual void display();
 
 private:
     virtual void decHour(){m_rtc.processA2Hour(false);}
@@ -14,4 +13,8 @@ private:
     virtual void incMin(){m_rtc.processA2Minute(true);}
     virtual void longPress1(){}
     virtual void longPress2(){}
+    virtual int getHour() { m_rtc.getA2Hour(); }
+    virtual int getMin() { m_rtc.getA2Minute(); }
+    virtual bool getA1() { return false; }
+    virtual bool getA2() { return true; }
 };
