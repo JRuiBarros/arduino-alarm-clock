@@ -36,3 +36,21 @@ void iMode::beginButtons()
     buttons[1].begin();
     buttons[2].begin();
 }
+
+boolean iMode::checkTimer()
+{
+    unsigned long currentMillis = millis();
+    if (currentMillis - previousMillis >= interval)
+    {
+        // save the last time you blinked the LED
+        previousMillis = currentMillis;
+        isBlink = !isBlink;
+    }
+    return isBlink;
+}
+
+void iMode::resetTimer()
+{
+    previousMillis = 0;
+    isBlink = true;
+}

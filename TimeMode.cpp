@@ -55,18 +55,6 @@ int TimeMode::pollButtons()
     }
 }
 
-boolean TimeMode::checkTimer()
-{
-    unsigned long currentMillis = millis();
-    if (currentMillis - previousMillis >= interval)
-    {
-        // save the last time you blinked the LED
-        previousMillis = currentMillis;
-        isBlink = !isBlink;
-    }
-    return isBlink;
-}
-
 void TimeMode::display()
 {
     int hour = getHour();
