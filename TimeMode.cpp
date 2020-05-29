@@ -11,12 +11,12 @@ int TimeMode::pollButtons()
         if (buttons[0].wasReleased())
         {
             m_setMode == 1 ? decHour() : decMin();
-            resetTimer();
+            resetTimer(true);
         }
         if (buttons[1].wasReleased())
         {
             m_setMode == 1 ? incHour() : incMin();
-            resetTimer();
+            resetTimer(true);
         }
         if (buttons[2].wasReleased())
         {

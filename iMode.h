@@ -20,7 +20,7 @@ protected:
     int m_setMode = 0;
 
     static boolean checkTimerToDisplay();
-    static void resetTimer();
+    static void resetTimer(boolean display = false);
     static DisplayWrapper m_display;
     static CButton buttons[];
 

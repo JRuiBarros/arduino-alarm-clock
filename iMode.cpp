@@ -59,8 +59,8 @@ boolean iMode::checkTimerToDisplay()
     return isDisplaying;
 }
 
-void iMode::resetTimer()
+void iMode::resetTimer(boolean display = false)
 {
     previousMillis = 0;
-    isDisplaying = false;
+    isDisplaying = display;
 }
