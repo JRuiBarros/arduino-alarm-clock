@@ -1,5 +1,7 @@
 #include "TimeMode.h"
 
+RTCWrapper TimeMode::m_rtc;
+
 int TimeMode::pollButtons()
 {
     readButtons();
@@ -27,7 +29,7 @@ int TimeMode::pollButtons()
     }
     else
     {
-        if (hook())
+        if (!isAlarm())
         {
             if (buttons[0].wasLongPressed())
             {
@@ -42,6 +44,7 @@ int TimeMode::pollButtons()
         if (buttons[2].wasLongPressed())
         {
             m_setMode = 1;
+            resetTimer();
         }
 
         int ret = iMode::pollButtons();
@@ -66,23 +69,23 @@ void TimeMode::display()
     {
         if (m_setMode == 1)
         {
-            hour = !checkTimer() ? hour : -1;
+            hour = !checkTimerToDisplay() ? hour : -1;
         }
         if (m_setMode == 2)
         {
-            min = !checkTimer() ? min : -1;
+            min = !checkTimerToDisplay() ? min : -1;
         }
         m_display.displayTime(hour, min, a1, a2);
     }
     else
     {
-        if (hook())
+        if (!isAlarm())
         {
             m_display.displayTime(hour, min, a1, a2);
         }
         else
         {
-            if (!checkTimer())
+            if (checkTimerToDisplay())
             {
                 m_display.displayTime(hour, min, a1, a2);
             }

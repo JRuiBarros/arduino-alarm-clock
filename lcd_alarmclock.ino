@@ -3,13 +3,6 @@
 #include "Alarm2.h"
 #include "TempMode.h"
 
-RTCWrapper TimeMode::m_rtc;
-CButton b1(2);
-CButton b2(3);
-CButton b3(4);
-CButton iMode::buttons[] = {b1, b2, b3};
-DisplayWrapper iMode::m_display;
-
 int a[] = {0, 1, 2, 3};
 CurrentTime timeMode(a);
 int b[] = {1, 0, 2, 3};
@@ -33,10 +26,9 @@ void setup()
   Serial.println("abcdef");
 
   // This is needed because reasons
-  iMode::m_display.begin();
   tempMode.begin();
 
-  iMode::beginButtons();
+  iMode::begin();
 
   Serial.println("ccccccccccc");
 }

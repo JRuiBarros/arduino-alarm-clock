@@ -7,7 +7,7 @@ public:
     using TimeMode::TimeMode;
 
 private:
-    virtual bool hook() { return true; }
+    virtual bool isAlarm() { return false; }
 
     virtual void decHour() { m_rtc.processHour(false); }
     virtual void decMin() { m_rtc.processMinute(false); }

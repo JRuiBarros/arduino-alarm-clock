@@ -5,11 +5,10 @@
 class RTCWrapper : public DS3234
 {
 private:
-  
   // Copied from the parent class source code as they are private functions there
   uint8_t BCDtoDEC(uint8_t val) { return ((val / 0x10) * 10) + (val % 0x10); }
   uint8_t DECtoBCD(uint8_t val) { return ((val / 10) * 0x10) + (val % 10); }
-  
+
   int readRegister(DS3234_registers regVal) { return BCDtoDEC(readFromRegister(regVal)); }
   void writeRegister(DS3234_registers regVal, uint8_t data) { writeToRegister(regVal, DECtoBCD(data)); }
 
@@ -30,12 +29,12 @@ public:
   void toggleAlarm1();
   void toggleAlarm2();
 
-  void processHour(bool inc){processTime(DS3234_REGISTER_HOURS, inc, 24);}
-  void processMinute(bool inc){processTime(DS3234_REGISTER_MINUTES, inc, 60);}
-  
-  void processA1Hour(bool inc){processTime(DS3234_REGISTER_A1HR, inc, 24);}
-  void processA1Minute(bool inc){processTime(DS3234_REGISTER_A1MIN, inc, 60);}
+  void processHour(bool inc) { processTime(DS3234_REGISTER_HOURS, inc, 24); }
+  void processMinute(bool inc) { processTime(DS3234_REGISTER_MINUTES, inc, 60); }
 
-  void processA2Hour(bool inc){processTime(DS3234_REGISTER_A2HR, inc, 24);}
-  void processA2Minute(bool inc){processTime(DS3234_REGISTER_A2MIN, inc, 60);}
+  void processA1Hour(bool inc) { processTime(DS3234_REGISTER_A1HR, inc, 24); }
+  void processA1Minute(bool inc) { processTime(DS3234_REGISTER_A1MIN, inc, 60); }
+
+  void processA2Hour(bool inc) { processTime(DS3234_REGISTER_A2HR, inc, 24); }
+  void processA2Minute(bool inc) { processTime(DS3234_REGISTER_A2MIN, inc, 60); }
 };

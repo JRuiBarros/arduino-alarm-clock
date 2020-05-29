@@ -6,14 +6,13 @@ class TimeMode : public iMode
 {
 public:
     using iMode::iMode;
-    static RTCWrapper m_rtc;
 
     virtual int pollButtons();
     virtual void display();
-
+protected:
+    static RTCWrapper m_rtc;
 private:
-
-    virtual bool hook() { return false; }
+    virtual bool isAlarm() { return true; }
     virtual void decHour() = 0;
     virtual void decMin() = 0;
     virtual void incHour() = 0;

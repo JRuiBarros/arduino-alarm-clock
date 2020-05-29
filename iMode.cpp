@@ -1,5 +1,14 @@
 #include "iMode.h"
 
+unsigned long iMode::previousMillis{0};
+boolean iMode::isDisplaying{false};
+
+CButton b1(2);
+CButton b2(3);
+CButton b3(4);
+CButton iMode::buttons[] = {b1, b2, b3};
+DisplayWrapper iMode::m_display;
+
 iMode::iMode(int p_rets[]) : rets{p_rets}
 {
 }
@@ -30,27 +39,28 @@ int iMode::pollButtons()
     return ret;
 }
 
-void iMode::beginButtons()
+void iMode::begin()
 {
     buttons[0].begin();
     buttons[1].begin();
     buttons[2].begin();
+    m_display.begin();
 }
 
-boolean iMode::checkTimer()
+boolean iMode::checkTimerToDisplay()
 {
     unsigned long currentMillis = millis();
     if (currentMillis - previousMillis >= interval)
     {
         // save the last time you blinked the LED
         previousMillis = currentMillis;
-        isBlink = !isBlink;
+        isDisplaying = !isDisplaying;
     }
-    return isBlink;
+    return isDisplaying;
 }
 
 void iMode::resetTimer()
 {
     previousMillis = 0;
-    isBlink = true;
+    isDisplaying = false;
 }
