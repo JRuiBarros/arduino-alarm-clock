@@ -22,6 +22,11 @@ int TimeMode::pollButtons()
         {
             m_setMode = m_setMode == 1 ? 2 : 0;
             resetTimer();
+
+            if (m_setMode == 0)
+            {
+                return 0;
+            }
         }
 
         // Returs current state
@@ -74,6 +79,11 @@ void TimeMode::display()
         if (m_setMode == 2)
         {
             min = !checkTimerToDisplay() ? min : -1;
+        }
+        if (!isAlarm())
+        {
+            a1 = false;
+            a2 = false;
         }
         m_display.displayTime(hour, min, a1, a2);
     }
