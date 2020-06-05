@@ -44,7 +44,7 @@ void iMode::begin()
     buttons[0].begin();
     buttons[1].begin();
     buttons[2].begin();
-    m_display.begin();
+    m_display.begin(DISPLAY_ADDRESS);
 }
 
 boolean iMode::checkTimerToDisplay()

@@ -9,9 +9,9 @@ class DisplayWrapper : public Adafruit_7segment
 {
 	private:
     void displayHours(int hour, int minute);
+    void display();
 	public:
-		DisplayWrapper();
-    void begin();
+    using Adafruit_7segment::Adafruit_7segment;
 		void displayTime(int hour, int minute, bool alarm1, bool alarm2);
     void displayBlank();
     void displayTemperature(float temp); 

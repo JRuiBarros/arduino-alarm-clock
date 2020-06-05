@@ -1,14 +1,5 @@
 #include "DisplayWrapper.h"
 
-DisplayWrapper::DisplayWrapper() : Adafruit_7segment{}
-{
-}
-
-void DisplayWrapper::begin()
-{
-  Adafruit_7segment::begin(DISPLAY_ADDRESS);
-}
-
 void DisplayWrapper::displayTime(int hour, int minute, bool alarm1, bool alarm2)
 {
   displayHours(hour, minute);
@@ -26,7 +17,7 @@ void DisplayWrapper::displayTime(int hour, int minute, bool alarm1, bool alarm2)
   }
 
   writeDigitRaw(2, bitValue);
-  writeDisplay();
+  display();
 }
 
 void DisplayWrapper::displayHours(int hour, int minute)
@@ -55,7 +46,7 @@ void DisplayWrapper::displayHours(int hour, int minute)
 void DisplayWrapper::displayBlank()
 {
   clear();
-  writeDisplay();
+  display();
 }
 
 void DisplayWrapper::displayTemperature(float temp)
@@ -69,5 +60,15 @@ void DisplayWrapper::displayTemperature(float temp)
   writeDigitNum(4, 0xC);
   writeDigitRaw(2, 0x10);
 
+  display();
+}
+
+void DisplayWrapper::display()
+{
+  int val = analogRead(A0);
+  // Serial.println(val);
+  val = map(val, 0, 1020, 0, 15);
+  // Serial.println(val);
+  setBrightness(val);
   writeDisplay();
 }
