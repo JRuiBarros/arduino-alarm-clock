@@ -5,10 +5,9 @@
 // unless you've changed the address jumpers on the back of the display.
 #define DISPLAY_ADDRESS   0x70
 
-class DisplayWrapper //TODO EXTEND HERE
+class DisplayWrapper : public Adafruit_7segment
 {
 	private:
-    Adafruit_7segment clockDisplay;
     void displayHours(int hour, int minute);
 	public:
 		DisplayWrapper();
