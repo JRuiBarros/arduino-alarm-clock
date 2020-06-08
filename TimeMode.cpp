@@ -1,6 +1,7 @@
 #include "TimeMode.h"
 
 RTCWrapper TimeMode::m_rtc;
+Timer TimeMode::setTimer{150};
 
 int TimeMode::pollButtons()
 {
@@ -8,22 +9,24 @@ int TimeMode::pollButtons()
 
     if (m_setMode != 0)
     {
-        // if (buttons[0].pressedFor(1000))
-        // {
-        //     if (checkDisplayTimer())
-        //     {
-        //         m_setMode == 1 ? decHour() : decMin();
-        //     }
-        //     resetDisplayTimer(true);
-        // }
-        // if (buttons[1].pressedFor(1000))
-        // {
-        //     if (checkDisplayTimer())
-        //     {
-        //         m_setMode == 1 ? incHour() : incMin();
-        //     }
-        //     resetDisplayTimer(true);
-        // }
+        if (buttons[0].pressedFor(1000))
+        {
+            if (setTimer.check())
+            {
+                m_setMode == 1 ? decHour() : decMin();
+                setTimer.reset(true);
+            }
+            displayTimer.reset(true);
+        }
+        if (buttons[1].pressedFor(1000))
+        {
+            if (setTimer.check())
+            {
+                m_setMode == 1 ? incHour() : incMin();
+                setTimer.reset(true);
+            }
+            displayTimer.reset(true);
+        }
         if (buttons[0].wasReleased())
         {
             m_setMode == 1 ? decHour() : decMin();

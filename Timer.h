@@ -1,5 +1,5 @@
 #pragma once
-#include <Arduino.h>
+#include <Arduino.h> // needed to call millis() function
 
 class Timer
 {

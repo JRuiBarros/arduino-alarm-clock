@@ -12,6 +12,8 @@ public:
 protected:
     static RTCWrapper m_rtc;
 private:
+    static Timer setTimer;
+
     virtual bool isAlarm() { return true; }
     virtual void decHour() = 0;
     virtual void decMin() = 0;

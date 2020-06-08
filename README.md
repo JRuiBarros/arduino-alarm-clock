@@ -6,7 +6,8 @@
 
 #### Change RTC values:
 - While displaying the current time, user presses a button to enter "change" mode.
-- User selects the desired hour and minute values.
+- User selects the desired hour and minute values using increase and decrease buttons.
+  - Long pressing the buttons changes the values quicker.
 - System saves the new values. 
   - User can do the same for the alarm values while the alarm value is being displayed.
 
