@@ -9,7 +9,7 @@ int TimeMode::pollButtons()
 
     if (m_setMode != 0)
     {
-        if (buttons[0].pressedFor(1000))
+        if (buttons[0].pressedFor(LONG_PRESS))
         {
             if (setTimer.check())
             {
@@ -18,7 +18,7 @@ int TimeMode::pollButtons()
             }
             displayTimer.reset(true);
         }
-        if (buttons[1].pressedFor(1000))
+        if (buttons[1].pressedFor(LONG_PRESS))
         {
             if (setTimer.check())
             {
