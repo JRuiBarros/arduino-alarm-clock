@@ -8,20 +8,36 @@ int TimeMode::pollButtons()
 
     if (m_setMode != 0)
     {
+        // if (buttons[0].pressedFor(1000))
+        // {
+        //     if (checkDisplayTimer())
+        //     {
+        //         m_setMode == 1 ? decHour() : decMin();
+        //     }
+        //     resetDisplayTimer(true);
+        // }
+        // if (buttons[1].pressedFor(1000))
+        // {
+        //     if (checkDisplayTimer())
+        //     {
+        //         m_setMode == 1 ? incHour() : incMin();
+        //     }
+        //     resetDisplayTimer(true);
+        // }
         if (buttons[0].wasReleased())
         {
             m_setMode == 1 ? decHour() : decMin();
-            resetTimer(true);
+            displayTimer.reset(true);
         }
         if (buttons[1].wasReleased())
         {
             m_setMode == 1 ? incHour() : incMin();
-            resetTimer(true);
+            displayTimer.reset(true);
         }
         if (buttons[2].wasReleased())
         {
             m_setMode = m_setMode == 1 ? 2 : 0;
-            resetTimer();
+            displayTimer.reset();
 
             if (m_setMode == 0)
             {
@@ -49,14 +65,14 @@ int TimeMode::pollButtons()
         if (buttons[2].wasLongPressed())
         {
             m_setMode = 1;
-            resetTimer();
+            displayTimer.reset();
         }
 
         int ret = iMode::pollButtons();
 
         if (ret != rets[0])
         {
-            resetTimer();
+            displayTimer.reset();
         }
 
         return ret;
@@ -74,11 +90,11 @@ void TimeMode::display()
     {
         if (m_setMode == 1)
         {
-            hour = !checkTimerToDisplay() ? hour : -1;
+            hour = !displayTimer.check() ? hour : -1;
         }
         if (m_setMode == 2)
         {
-            min = !checkTimerToDisplay() ? min : -1;
+            min = !displayTimer.check() ? min : -1;
         }
         if (!isAlarm())
         {
@@ -95,7 +111,7 @@ void TimeMode::display()
         }
         else
         {
-            if (checkTimerToDisplay())
+            if (displayTimer.check())
             {
                 m_display.displayTime(hour, min, a1, a2);
             }
