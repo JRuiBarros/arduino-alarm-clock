@@ -23,19 +23,20 @@ void setup()
   {
     ; // wait for serial port to connect. Needed for Native USB only
   }
-  Serial.println("abcdef");
 
   // This is needed because reasons
   tempMode.begin();
-
   iMode::begin();
 
-  Serial.println("ccccccccccc");
+  pinMode(9, INPUT_PULLUP); // INT pin of the time module.
+  pinMode(8, OUTPUT); // LED PIN.
 }
 
 void loop()
 {
-  // Serial.println("bbbbbbbbbb");
+  // Polls the INT pin of the time module, the pin is output inverted so we use ! digital read.
+  !digitalRead(9) ? digitalWrite(8, HIGH) : digitalWrite(8, LOW);
+
   int mode = currentMode->pollButtons();
   currentMode = modes[mode];
   currentMode->display();

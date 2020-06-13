@@ -9,7 +9,7 @@ RTCWrapper::RTCWrapper() : DS3234{}
   // Set the time using compiler data
   autoTime();
 
-  setAlarm1(255, 10, 11);
+  setAlarm1(0, 50, 15);
   setAlarm2(22, 22);
 }
 
@@ -31,4 +31,11 @@ void RTCWrapper::toggleAlarm(int mask)
 {
     int reg = readFromRegister(DS3234_REGISTER_CONTROL);
     writeToRegister(DS3234_REGISTER_CONTROL, reg ^ mask);
+    //clearAlarm(mask);
 }
+
+// void RTCWrapper::clearAlarm(int mask)
+// {
+//     int reg = readFromRegister(DS3234_REGISTER_STATUS);
+//     writeToRegister(DS3234_REGISTER_STATUS, reg & ~mask);
+// }

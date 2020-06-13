@@ -14,6 +14,7 @@ private:
 
   void processTime(DS3234_registers reg, bool inc, int max);
   void toggleAlarm(int mask);
+  // void clearAlarm(int mask);
 
 public:
   RTCWrapper();
@@ -27,8 +28,11 @@ public:
   bool isAlarm1() { return readFromRegister(DS3234_REGISTER_CONTROL) & 0x01; }
   bool isAlarm2() { return (readFromRegister(DS3234_REGISTER_CONTROL) >> 1) & 0x01; }
 
-  void toggleAlarm1() { toggleAlarm(1); } // Toggle first bit of the control register.
-  void toggleAlarm2() { toggleAlarm(2); } // Toggle second bit of the control register.
+  void toggleAlarm1() { toggleAlarm(1); } // Toggle first bit of the control register and clear the alarm.
+  void toggleAlarm2() { toggleAlarm(2); } // Toggle second bit of the control register and clear the alarm.
+
+  // void clearAlarm1() { clearAlarm(1); } // Clear first bit of the status register.
+  // void clearAlarm2() { clearAlarm(2); } // Clear second bit of the status register.
 
   void processHour(bool inc) { processTime(DS3234_REGISTER_HOURS, inc, 24); }
   void processMinute(bool inc) { processTime(DS3234_REGISTER_MINUTES, inc, 60); }
