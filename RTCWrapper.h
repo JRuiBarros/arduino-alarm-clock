@@ -12,8 +12,8 @@ private:
   int readRegister(DS3234_registers regVal) { return BCDtoDEC(readFromRegister(regVal)); }
   void writeRegister(DS3234_registers regVal, uint8_t data) { writeToRegister(regVal, DECtoBCD(data)); }
 
-  void disableINTCN();
   void processTime(DS3234_registers reg, bool inc, int max);
+  void toggleAlarm(int mask);
 
 public:
   RTCWrapper();
@@ -23,11 +23,12 @@ public:
   int getA2Hour() { return readRegister(DS3234_REGISTER_A2HR); }
   int getA2Minute() { return readRegister(DS3234_REGISTER_A2MIN); }
 
+  // Read alarm bits from the control register to check alarm status.
   bool isAlarm1() { return readFromRegister(DS3234_REGISTER_CONTROL) & 0x01; }
   bool isAlarm2() { return (readFromRegister(DS3234_REGISTER_CONTROL) >> 1) & 0x01; }
 
-  void toggleAlarm1();
-  void toggleAlarm2();
+  void toggleAlarm1() { toggleAlarm(1); } // Toggle first bit of the control register.
+  void toggleAlarm2() { toggleAlarm(2); } // Toggle second bit of the control register.
 
   void processHour(bool inc) { processTime(DS3234_REGISTER_HOURS, inc, 24); }
   void processMinute(bool inc) { processTime(DS3234_REGISTER_MINUTES, inc, 60); }

@@ -27,39 +27,8 @@ void RTCWrapper::processTime(DS3234_registers reg, bool inc, int max)
   writeRegister(reg, val);
 }
 
-void RTCWrapper::toggleAlarm1()
+void RTCWrapper::toggleAlarm(int mask)
 {
-  if (isAlarm1())
-  {
     int reg = readFromRegister(DS3234_REGISTER_CONTROL);
-    writeToRegister(DS3234_REGISTER_CONTROL, reg & ~0x01);
-    disableINTCN();
-  }
-  else
-  {
-    enableAlarmInterrupt(true, false);
-  }
-}
-
-void RTCWrapper::toggleAlarm2()
-{
-  if (isAlarm2())
-  {
-    int reg = readFromRegister(DS3234_REGISTER_CONTROL);
-    writeToRegister(DS3234_REGISTER_CONTROL, reg & ~(0x01 << 1));
-    disableINTCN();
-  }
-  else
-  {
-    enableAlarmInterrupt(false, true);
-  }
-}
-
-void RTCWrapper::disableINTCN()
-{
-  if (!isAlarm1() && !isAlarm2())
-  {
-    int reg = readFromRegister(DS3234_REGISTER_CONTROL);
-    writeToRegister(DS3234_REGISTER_CONTROL, reg & ~(0x01 << 2));
-  }
+    writeToRegister(DS3234_REGISTER_CONTROL, reg ^ mask);
 }
