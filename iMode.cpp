@@ -3,7 +3,8 @@
 CButton b1(2);
 CButton b2(3);
 CButton b3(4);
-CButton iMode::buttons[] = {b1, b2, b3};
+CButton b4(5);
+CButton iMode::buttons[] = {b1, b2, b3, b4};
 DisplayWrapper iMode::m_display;
 Timer iMode::displayTimer{500};
 
@@ -16,6 +17,7 @@ void iMode::readButtons()
     buttons[0].read();
     buttons[1].read();
     buttons[2].read();
+    buttons[3].read();
 }
 
 int iMode::pollButtons()
@@ -42,5 +44,6 @@ void iMode::begin()
     buttons[0].begin();
     buttons[1].begin();
     buttons[2].begin();
+    buttons[3].begin();
     m_display.begin(DISPLAY_ADDRESS);
 }

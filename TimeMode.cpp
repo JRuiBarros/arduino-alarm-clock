@@ -7,6 +7,12 @@ int TimeMode::pollButtons()
 {
     readButtons();
 
+    // Poll clear alarm button
+    if (buttons[3].wasReleased())
+    {
+        m_rtc.clearAlarms();
+    }
+
     if (m_setMode != 0)
     {
         if (buttons[0].pressedFor(LONG_PRESS))

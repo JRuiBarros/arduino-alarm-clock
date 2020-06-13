@@ -13,8 +13,9 @@ private:
   void writeRegister(DS3234_registers regVal, uint8_t data) { writeToRegister(regVal, DECtoBCD(data)); }
 
   void processTime(DS3234_registers reg, bool inc, int max);
-  void toggleAlarm(int mask);
-  // void clearAlarm(int mask);
+
+  void toggleAlarm(int mask); // Toggles the alarm bits of the control register.
+  void clearAlarm(int mask);  // Clears the alarm bits of the status register.
 
 public:
   RTCWrapper();
@@ -31,6 +32,7 @@ public:
   void toggleAlarm1() { toggleAlarm(1); } // Toggle first bit of the control register and clear the alarm.
   void toggleAlarm2() { toggleAlarm(2); } // Toggle second bit of the control register and clear the alarm.
 
+  void clearAlarms() { clearAlarm(3); } // Clears both alarms.
   // void clearAlarm1() { clearAlarm(1); } // Clear first bit of the status register.
   // void clearAlarm2() { clearAlarm(2); } // Clear second bit of the status register.
 

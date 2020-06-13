@@ -31,11 +31,11 @@ void RTCWrapper::toggleAlarm(int mask)
 {
     int reg = readFromRegister(DS3234_REGISTER_CONTROL);
     writeToRegister(DS3234_REGISTER_CONTROL, reg ^ mask);
-    //clearAlarm(mask);
+    clearAlarm(mask);
 }
 
-// void RTCWrapper::clearAlarm(int mask)
-// {
-//     int reg = readFromRegister(DS3234_REGISTER_STATUS);
-//     writeToRegister(DS3234_REGISTER_STATUS, reg & ~mask);
-// }
+void RTCWrapper::clearAlarm(int mask)
+{
+    int reg = readFromRegister(DS3234_REGISTER_STATUS);
+    writeToRegister(DS3234_REGISTER_STATUS, reg & ~mask);
+}
