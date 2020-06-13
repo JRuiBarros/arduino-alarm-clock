@@ -10,7 +10,7 @@ public:
     virtual int pollButtons();
     virtual void display();
 protected:
-    static RTCWrapper m_rtc;
+    static RTCWrapper m_rtc; // TODO move this to the iMode class so the alarm can be cleared from any mode.
 private:
     static Timer setTimer;
 

@@ -14,7 +14,7 @@ private:
 
   void processTime(DS3234_registers reg, bool inc, int max);
 
-  void toggleAlarm(int mask); // Toggles the alarm bits of the control register.
+  void toggleAlarm(int mask); // Toggles the alarm bits of the control register and clears the respective alarm.
   void clearAlarm(int mask);  // Clears the alarm bits of the status register.
 
 public:
