@@ -1,6 +1,6 @@
 #pragma once
 #include "iMode.h"
-#include "RTCWrapper.h"
+#include "RTC.h"
 
 class TimeMode : public iMode
 {
@@ -10,7 +10,7 @@ public:
     virtual int pollButtons();
     virtual void display();
 protected:
-    static RTCWrapper m_rtc; // TODO move this to the iMode class so the alarm can be cleared from any mode.
+    static RTC m_rtc; // TODO move this to the iMode class so the alarm can be cleared from any mode.
 private:
     static Timer setTimer;
 

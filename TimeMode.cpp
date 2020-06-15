@@ -1,6 +1,6 @@
 #include "TimeMode.h"
 
-RTCWrapper TimeMode::m_rtc;
+RTC TimeMode::m_rtc;
 Timer TimeMode::setTimer{150};
 
 int TimeMode::pollButtons()

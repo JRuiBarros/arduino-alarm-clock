@@ -1,6 +1,6 @@
-#include "RTCWrapper.h"
+#include "RTC.h"
 
-RTCWrapper::RTCWrapper() : DS3234{}
+RTC::RTC() : DS3234{}
 {
 
   // Initialize library
@@ -13,7 +13,7 @@ RTCWrapper::RTCWrapper() : DS3234{}
   setAlarm2(22, 22);
 }
 
-void RTCWrapper::processTime(DS3234_registers reg, bool inc, int max)
+void RTC::processTime(DS3234_registers reg, bool inc, int max)
 {
   int val = readRegister(reg);
   if (inc)
@@ -27,14 +27,16 @@ void RTCWrapper::processTime(DS3234_registers reg, bool inc, int max)
   writeRegister(reg, val);
 }
 
-void RTCWrapper::toggleAlarm(int mask)
+void RTC::toggleControlBits(int mask)
 {
     int reg = readFromRegister(DS3234_REGISTER_CONTROL);
     writeToRegister(DS3234_REGISTER_CONTROL, reg ^ mask);
-    clearAlarm(mask);
+
+    // For now this function is only used to toggle the alarm bits so that's why we're clearing the status bits here.
+    clearStatusBits(mask);
 }
 
-void RTCWrapper::clearAlarm(int mask)
+void RTC::clearStatusBits(int mask)
 {
     int reg = readFromRegister(DS3234_REGISTER_STATUS);
     writeToRegister(DS3234_REGISTER_STATUS, reg & ~mask);
