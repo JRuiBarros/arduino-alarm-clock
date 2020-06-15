@@ -5,7 +5,7 @@ CButton b2(3);
 CButton b3(4);
 CButton b4(5);
 CButton iMode::buttons[] = {b1, b2, b3, b4};
-DisplayWrapper iMode::m_display;
+Display iMode::m_display;
 Timer iMode::displayTimer{500};
 
 iMode::iMode(int p_rets[]) : rets{p_rets}

@@ -1,8 +1,8 @@
-#include "DisplayWrapper.h"
+#include "Display.h"
 
-void DisplayWrapper::displayTime(int hour, int minute, bool alarm1, bool alarm2)
+void Display::displayTime(int hour, int minute, bool alarm1, bool alarm2)
 {
-  displayHours(hour, minute);
+  insertTimeValues(hour, minute);
 
   // Center colon
   int bitValue = 0x02;
@@ -16,11 +16,11 @@ void DisplayWrapper::displayTime(int hour, int minute, bool alarm1, bool alarm2)
     bitValue |= 0x08; // Lower left dot
   }
 
-  writeDigitRaw(2, bitValue);
-  display();
+  writeDigitRaw(2, bitValue); // Write the leds values on the buffer.
+  writeToDisplay();
 }
 
-void DisplayWrapper::displayHours(int hour, int minute)
+void Display::insertTimeValues(int hour, int minute)
 {
   clear();
   
@@ -43,13 +43,13 @@ void DisplayWrapper::displayHours(int hour, int minute)
   }
 }
 
-void DisplayWrapper::displayBlank()
+void Display::displayBlank()
 {
   clear();
-  display();
+  writeToDisplay();
 }
 
-void DisplayWrapper::displayTemperature(float temp)
+void Display::displayTemperature(float temp)
 {
   // Round temperature value to one decimal case
   float rounded = ((float)((int)(temp * 10 + .5))) / 10;
@@ -60,15 +60,15 @@ void DisplayWrapper::displayTemperature(float temp)
   writeDigitNum(4, 0xC);
   writeDigitRaw(2, 0x10);
 
-  display();
+  writeToDisplay();
 }
 
-void DisplayWrapper::display()
+void Display::writeToDisplay()
 {
+  // Read brightess value.
   int val = analogRead(A0);
-  // Serial.println(val);
+  // Map brightness to "display class" brightess values.
   val = map(val, 0, 1020, 0, 15);
-  // Serial.println(val);
   setBrightness(val);
   writeDisplay();
 }
