@@ -1,9 +1,5 @@
 #include "CButton.h"
 
-CButton::CButton(int p) : Button(p)
-{
-}
-
 bool CButton::wasReleased()
 {
     bool ret = Button::wasReleased();
