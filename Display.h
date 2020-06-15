@@ -5,7 +5,7 @@
 // unless you've changed the address jumpers on the back of the display.
 #define DISPLAY_ADDRESS 0x70
 
-// Extension of the Adafruit 7 segment class to accomodate this projects needs.
+// Extension of the Adafruit 7 segment class to accomodate this project's needs.
 class Display : public Adafruit_7segment
 {
 private:
@@ -19,6 +19,7 @@ public:
   using Adafruit_7segment::Adafruit_7segment;
 
   // Display a time value, including the alarm LED dots on the left of the screen if needed.
+  // A value of -1 hides the respective time field, useful to create a blinking effect.
   void displayTime(int hour, int minute, bool alarm1, bool alarm2);
 
   // Clears the display, useful for the alarm blinking effect.

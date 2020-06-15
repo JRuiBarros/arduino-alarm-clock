@@ -22,8 +22,12 @@ void Display::displayTime(int hour, int minute, bool alarm1, bool alarm2)
 
 void Display::insertTimeValues(int hour, int minute)
 {
+  // This function first clears the screen to avoid issues as here we may not write all the digits if necessary. Then the time values are splitted into digits
+  // and inserted one at a time. It is done that way as we may not want to insert all of them at a time in order to create a blinking effect, something that is not
+  // possible using the in-built functions.
+
   clear();
-  
+   
   if (hour != -1)
   {
     int d1 = hour / 10;
@@ -67,7 +71,7 @@ void Display::writeToDisplay()
 {
   // Read brightess value.
   int val = analogRead(A0);
-  // Map brightness to "display class" brightess values.
+  // Map brightness to "display class" brightess values (0 to 15).
   val = map(val, 0, 1020, 0, 15);
   setBrightness(val);
   writeDisplay();
