@@ -7,8 +7,8 @@ class TimeMode : public iMode
 public:
     using iMode::iMode;
 
-    virtual int pollButtons();
-    virtual void display();
+    int pollButtons();
+    void display();
 protected:
     static RTC m_rtc; // TODO move this to the iMode class so the alarm can be cleared from any mode.
 private:
