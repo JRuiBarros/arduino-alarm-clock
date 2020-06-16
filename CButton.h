@@ -3,6 +3,7 @@
 
 #define LONG_PRESS  1000 // we define a "long press" to be 1000 milliseconds.
 
+// Class representing a hardware button, extends the button library by JChristensen.
 class CButton: public Button
 {
     private:

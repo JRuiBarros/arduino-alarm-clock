@@ -1,6 +1,7 @@
 #pragma once
 #include "TimeMode.h"
 
+// Class representing the current time display mode (shows current time).
 class CurrentTime : public TimeMode
 {
 public:

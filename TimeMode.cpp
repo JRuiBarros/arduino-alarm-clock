@@ -13,6 +13,7 @@ int TimeMode::pollButtons()
         m_rtc.clearAlarms();
     }
 
+    // Logic during the setting of the time values.
     if (m_setMode != 0)
     {
         if (buttons[0].pressedFor(LONG_PRESS))
@@ -50,6 +51,7 @@ int TimeMode::pollButtons()
 
             if (m_setMode == 0)
             {
+                // After setting always returns the current time mode.
                 return 0;
             }
         }
@@ -95,6 +97,7 @@ void TimeMode::display()
     bool a1 = getA1();
     bool a2 = getA2();
 
+    // Logic during the setting mode to create the blinking effect.
     if (m_setMode != 0)
     {
         if (m_setMode == 1)
@@ -105,7 +108,7 @@ void TimeMode::display()
         {
             min = !displayTimer.check() ? min : -1;
         }
-        if (!isAlarm())
+        if (!isAlarm()) // Show no leds if current time is being set.
         {
             a1 = false;
             a2 = false;
@@ -118,7 +121,7 @@ void TimeMode::display()
         {
             m_display.displayTime(hour, min, a1, a2);
         }
-        else
+        else // Blink the screen is showing the alarm values.
         {
             if (displayTimer.check())
             {

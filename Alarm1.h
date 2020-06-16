@@ -1,6 +1,7 @@
 #pragma once
 #include "TimeMode.h"
 
+// Class representing the Alarm1 display mode.
 class Alarm1 : public TimeMode
 {
 public:

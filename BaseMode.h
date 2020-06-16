@@ -8,7 +8,6 @@ class BaseMode
 {
 protected:
     int *rets; // Int array containing the "display modes" corresponding to each respective button position, used to change between the modes using the buttons.
-    int m_setMode = 0; // Setting mode of the "display mode", 0 = no setting, 1 = setting hour, 2 = setting minutes.
 
     // Executes the read() function in all the buttons.
     void readButtons();
@@ -19,7 +18,11 @@ protected:
 
 public:
     BaseMode(int p_rets[]);
+
+    // Polls all the buttons and returns an int representing the "current" display mode to be displayed.
     virtual int pollButtons();
+
+    // Display the current display mode.
     virtual void display() = 0;
 
     // Starts up the buttons and the display components.
