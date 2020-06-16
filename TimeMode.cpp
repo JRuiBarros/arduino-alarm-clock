@@ -77,7 +77,7 @@ int TimeMode::pollButtons()
             displayTimer.reset();
         }
 
-        int ret = iMode::pollButtons();
+        int ret = BaseMode::pollButtons();
 
         if (ret != rets[0])
         {

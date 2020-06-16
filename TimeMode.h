@@ -1,11 +1,11 @@
 #pragma once
-#include "iMode.h"
+#include "BaseMode.h"
 #include "RTC.h"
 
-class TimeMode : public iMode
+class TimeMode : public BaseMode
 {
 public:
-    using iMode::iMode;
+    using BaseMode::BaseMode;
 
     int pollButtons();
     void display();

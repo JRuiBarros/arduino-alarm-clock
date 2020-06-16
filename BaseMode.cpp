@@ -1,18 +1,18 @@
-#include "iMode.h"
+#include "BaseMode.h"
 
 CButton b1(2);
 CButton b2(3);
 CButton b3(4);
 CButton b4(5);
-CButton iMode::buttons[] = {b1, b2, b3, b4};
-Display iMode::m_display;
-Timer iMode::displayTimer{500};
+CButton BaseMode::buttons[] = {b1, b2, b3, b4};
+Display BaseMode::m_display;
+Timer BaseMode::displayTimer{500};
 
-iMode::iMode(int p_rets[]) : rets{p_rets}
+BaseMode::BaseMode(int p_rets[]) : rets{p_rets}
 {
 }
 
-void iMode::readButtons()
+void BaseMode::readButtons()
 {
     buttons[0].read();
     buttons[1].read();
@@ -20,7 +20,7 @@ void iMode::readButtons()
     buttons[3].read();
 }
 
-int iMode::pollButtons()
+int BaseMode::pollButtons()
 {
     int ret = rets[0];
 
@@ -39,7 +39,7 @@ int iMode::pollButtons()
     return ret;
 }
 
-void iMode::begin()
+void BaseMode::begin()
 {
     buttons[0].begin();
     buttons[1].begin();

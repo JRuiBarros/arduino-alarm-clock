@@ -1,14 +1,14 @@
 #pragma once
-#include "iMode.h"
+#include "BaseMode.h"
 #include <Adafruit_BMP280.h>
 
-class TempMode : public iMode
+class TempMode : public BaseMode
 {
 private:
-    Adafruit_BMP280 bmp;
+    Adafruit_BMP280 bmp; // TODO change this to static when the other sensor arrives.
 
 public:
-    using iMode::iMode;
+    using BaseMode::BaseMode;
     int pollButtons();
     void display();
     void begin();

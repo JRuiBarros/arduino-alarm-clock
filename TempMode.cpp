@@ -15,7 +15,7 @@ void TempMode::begin()
 int TempMode::pollButtons()
 {
     readButtons();
-    iMode::pollButtons();
+    BaseMode::pollButtons();
 }
 
 void TempMode::display()

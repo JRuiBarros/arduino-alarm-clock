@@ -12,9 +12,9 @@ Alarm2 alarm2Mode(c);
 int d[] = {3, 1, 2, 0};
 TempMode tempMode(d);
 
-iMode *modes[] = {&timeMode, &alarm1Mode, &alarm2Mode, &tempMode};
+BaseMode *modes[] = {&timeMode, &alarm1Mode, &alarm2Mode, &tempMode};
 
-iMode *currentMode = &timeMode;
+BaseMode *currentMode = &timeMode;
 
 void setup()
 {
@@ -26,7 +26,7 @@ void setup()
 
   // This is needed because reasons
   tempMode.begin();
-  iMode::begin();
+  BaseMode::begin();
 
   pinMode(9, INPUT_PULLUP); // INT pin of the time module.
   pinMode(8, OUTPUT); // LED PIN.
