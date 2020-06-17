@@ -20,6 +20,7 @@ private:
     // Checks if time mode is an alarm.
     virtual bool isAlarm() { return true; }
 
+    // Increase or decrease the current time values.
     virtual void decHour() = 0;
     virtual void decMin() = 0;
     virtual void incHour() = 0;
@@ -29,6 +30,7 @@ private:
     virtual void longPress1() = 0;
     virtual void longPress2() = 0;
 
+    // Get the current time values and led status.
     virtual int getHour() = 0;
     virtual int getMin() = 0;
     virtual bool getA1() = 0;

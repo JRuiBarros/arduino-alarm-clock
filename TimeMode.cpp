@@ -16,14 +16,17 @@ int TimeMode::pollButtons()
     // Logic during the setting of the time values.
     if (m_setMode != 0)
     {
+        // First two blocks refer to long press setting, where you long press the button and the values
+        // increment rapidly, a timer is used to control the speed of the increments.
         if (buttons[0].pressedFor(LONG_PRESS))
         {
             if (setTimer.check())
             {
                 m_setMode == 1 ? decHour() : decMin();
+                // We're passing a true parameter here so the next timer call will return false, otherwise time would increment as fast as possible. 
                 setTimer.reset(true);
             }
-            displayTimer.reset(true);
+            displayTimer.reset();
         }
         if (buttons[1].pressedFor(LONG_PRESS))
         {
@@ -32,26 +35,28 @@ int TimeMode::pollButtons()
                 m_setMode == 1 ? incHour() : incMin();
                 setTimer.reset(true);
             }
-            displayTimer.reset(true);
+            displayTimer.reset();
         }
+        // Regular button press settings
         if (buttons[0].wasReleased())
         {
             m_setMode == 1 ? decHour() : decMin();
-            displayTimer.reset(true);
+            displayTimer.reset();
         }
         if (buttons[1].wasReleased())
         {
             m_setMode == 1 ? incHour() : incMin();
-            displayTimer.reset(true);
+            displayTimer.reset();
         }
+        // Change setting mode.
         if (buttons[2].wasReleased())
         {
             m_setMode = m_setMode == 1 ? 2 : 0;
-            displayTimer.reset();
+            displayTimer.reset(true); // We want the blinking effect to start immediately so we pass a "true" as a parameter.
 
             if (m_setMode == 0)
             {
-                // After setting always returns the current time mode.
+                // After setting time values always return the current time mode.
                 return 0;
             }
         }
@@ -61,6 +66,7 @@ int TimeMode::pollButtons()
     }
     else
     {
+        // Only check for long presses during the current time display mode.
         if (!isAlarm())
         {
             if (buttons[0].wasLongPressed())
@@ -73,14 +79,17 @@ int TimeMode::pollButtons()
                 longPress2();
             }
         }
+        // Start up setting the time if button 2 is long pressed.
         if (buttons[2].wasLongPressed())
         {
             m_setMode = 1;
-            displayTimer.reset();
+            displayTimer.reset(true); // We want the blinking effect to start immediately so we pass a "true" as a parameter.
         }
 
+        // Superclass button polling function, always needed.
         int ret = BaseMode::pollButtons();
 
+        // If changing alarm display mode then reset the display timer, so the blinking restarts properly.
         if (ret != rets[0])
         {
             displayTimer.reset();
@@ -102,11 +111,11 @@ void TimeMode::display()
     {
         if (m_setMode == 1)
         {
-            hour = !displayTimer.check() ? hour : -1;
+            hour = displayTimer.check() ? hour : -1;
         }
         if (m_setMode == 2)
         {
-            min = !displayTimer.check() ? min : -1;
+            min = displayTimer.check() ? min : -1;
         }
         if (!isAlarm()) // Show no leds if current time is being set.
         {

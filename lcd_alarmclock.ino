@@ -37,7 +37,7 @@ void loop()
   // Polls the INT pin of the time module, the pin is output inverted so we use ! digital read.
   !digitalRead(9) ? digitalWrite(8, HIGH) : digitalWrite(8, LOW);
 
-  int mode = currentMode->pollButtons();
-  currentMode = modes[mode];
-  currentMode->display();
+  int mode = currentMode->pollButtons(); // Polls alarm buttons and returns the next current mode to be displayed.
+  currentMode = modes[mode]; // Selects the current mode using the return value of the previous line.
+  currentMode->display(); // Displays the curent mode on the screen.
 }

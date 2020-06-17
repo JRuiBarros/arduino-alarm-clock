@@ -17,7 +17,7 @@ bool Timer::check()
     return on;
 }
 
-void Timer::reset(bool p_on = false)
+void Timer::reset(bool p_on)
 {
     prevMillis = 0;
     on = p_on;
