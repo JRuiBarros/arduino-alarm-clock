@@ -3,6 +3,10 @@
 #include "Alarm2.h"
 #include "TempMode.h"
 
+// The numbers on each array work as follows:
+// 1st position corresponds to the position on the modes array below of the mode itself.
+// The other three numbers are an association of the buttons to the other display modes represented by their position on the modes array.
+// They are needed so the user can switch between the modes at will using the alarm clock buttons.
 int a[] = {0, 1, 2, 3};
 CurrentTime timeMode(a);
 int b[] = {1, 0, 2, 3};
@@ -12,9 +16,10 @@ Alarm2 alarm2Mode(c);
 int d[] = {3, 1, 2, 0};
 TempMode tempMode(d);
 
+// Array containing all the instances of the clock display modes. Only one can be active at a time and it is decided by the result of the pollButtons function.
 BaseMode *modes[] = {&timeMode, &alarm1Mode, &alarm2Mode, &tempMode};
 
-BaseMode *currentMode = &timeMode;
+BaseMode *currentMode = &timeMode; // Pointer to the current mode being displayed.
 
 void setup()
 {
