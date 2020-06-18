@@ -1,33 +1,8 @@
-### Use cases:
+# Arduino alarm clock (project in progress..)
+An alarm clock built using the Arduino platform that features a standalone RTC module, large 7 segment display, temp/humidity display, automatic brightness setting and more.
+This project is designed around the state and template design patterns featuring an extensive amount of C++ classes instead of the more usual approach of writing all the code in the .ino file, therefore promoting good software development practices and keeping it as readable and clean as possible.
 
-#### Select current display:
-- User presses a button to cycle through current time, temperature and humidity displays.
-  - User can also press a dedicated alarm button to display its value (alarm time).
-
-#### Change RTC values:
-- While displaying the current time, user presses a button to enter "change" mode.
-- User selects the desired hour and minute values using increase and decrease buttons.
-  - Long pressing the buttons changes the values quicker.
-- System saves the new values. 
-  - User can do the same for the alarm values while the alarm value is being displayed.
-
-#### Enable alarm:
-- While displaying current time, user long presses a dedicated alarm button to enable it.
-- System turns on an LCD dot to show the user the alarm is enabled.
-  - User can do the same on an enabled alarm to disable it.
-
-#### Trigger alarm:
--  System triggers an enabled alarm when the current time is equal to the alarm value.
--  User can either:
-   - Turn the alarm off.
-   - Activate a snooze function.
-
-#### Play white noise:
-- User presses a button to play white noise.
-- System starts playing the white noise music file.
-- User can adjust the volume with dedicated buttons.
-- User presses the "on" button to turn off the noise.
-
-#### Adjust screen brightness:
-<!--- User adjusts the screen brightness using a potentiometer.?? - Do this first -->
-- System adjusts the screen brightness according to the ambient light.
+## TODO: How to use
+## TODO: Installing/Dependencies
+## TODO: Parts list
+## TODO: Wiring diagram
