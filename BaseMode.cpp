@@ -7,6 +7,7 @@ CButton b4(5);
 CButton BaseMode::buttons[] = {b1, b2, b3, b4};
 Display BaseMode::m_display;
 Timer BaseMode::displayTimer{500};
+RTC BaseMode::m_rtc;
 
 BaseMode::BaseMode(int p_rets[]) : rets{p_rets}
 {
@@ -36,6 +37,12 @@ int BaseMode::pollButtons()
     {
         ret = rets[3];
     }
+    // Poll clear alarm button
+    if (buttons[3].wasReleased())
+    {
+        m_rtc.clearAlarms();
+    }
+
     return ret;
 }
 

@@ -2,6 +2,7 @@
 #include "CButton.h"
 #include "Display.h"
 #include "Timer.h"
+#include "RTC.h"
 
 // Abstract class representing a "display mode" of the alarm clock.
 class BaseMode
@@ -16,6 +17,7 @@ protected:
     static Display m_display; // 7 segment display of the alarm clock.
     static CButton buttons[]; // All the buttons used by the alarm clock.
 
+    static RTC m_rtc; // It is in this class so the alarm can be cleared from any mode.
 public:
     BaseMode(int p_rets[]);
 

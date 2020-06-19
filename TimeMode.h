@@ -1,6 +1,5 @@
 #pragma once
 #include "BaseMode.h"
-#include "RTC.h"
 
 // Abstract class representing the modes that use time values from the clock module.
 class TimeMode : public BaseMode
@@ -11,8 +10,6 @@ public:
     int pollButtons();
     void display();
 
-protected:
-    static RTC m_rtc; // TODO move this to the iMode class so the alarm can be cleared from any mode.
 private:
     int m_setMode = 0;     // Setting mode of the "time mode", 0 = no setting, 1 = setting hour, 2 = setting minutes.
     static Timer setTimer; // Timer used to create the long press time setting effect.

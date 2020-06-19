@@ -1,17 +1,10 @@
 #include "TimeMode.h"
 
-RTC TimeMode::m_rtc;
 Timer TimeMode::setTimer{150};
 
 int TimeMode::pollButtons()
 {
     readButtons();
-
-    // Poll clear alarm button
-    if (buttons[3].wasReleased())
-    {
-        m_rtc.clearAlarms();
-    }
 
     // Logic during the setting of the time values.
     if (m_setMode != 0)
