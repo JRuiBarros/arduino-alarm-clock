@@ -6,6 +6,5 @@ class TempMode : public BaseMode
 {
 public:
     using BaseMode::BaseMode;
-    int pollButtons();
-    void display();
+    void display() {m_display.displayTemperature(bme.readTemperature());}
 };

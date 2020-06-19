@@ -54,7 +54,7 @@ int TimeMode::pollButtons()
             }
         }
 
-        // Returs current state
+        // Returns current state
         return rets[0];
     }
     else
@@ -79,8 +79,8 @@ int TimeMode::pollButtons()
             displayTimer.reset(true); // We want the blinking effect to start immediately so we pass a "true" as a parameter.
         }
 
-        // Superclass button polling function, always needed.
-        int ret = BaseMode::pollButtons();
+        // As we are reading the buttons on the beggining of the function we need to poll them without reading again.
+        int ret = BaseMode::pollWithoutRead();
 
         // If changing alarm display mode then reset the display timer, so the blinking restarts properly.
         if (ret != rets[0])

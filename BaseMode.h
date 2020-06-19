@@ -13,6 +13,9 @@ protected:
 
     // Executes the read() function in all the buttons.
     void readButtons();
+    
+    // Polls the buttons without reading them first.
+    int pollWithoutRead();
 
     static Timer displayTimer; // Timer responsible for the display blinking effect.
     static Display m_display; // 7 segment display of the alarm clock.

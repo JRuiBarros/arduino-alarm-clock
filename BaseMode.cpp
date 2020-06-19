@@ -22,7 +22,7 @@ void BaseMode::readButtons()
     buttons[3].read();
 }
 
-int BaseMode::pollButtons()
+int BaseMode::pollWithoutRead()
 {
     int ret = rets[0];
 
@@ -45,6 +45,12 @@ int BaseMode::pollButtons()
     }
 
     return ret;
+}
+
+int BaseMode::pollButtons()
+{
+    readButtons();
+    return pollWithoutRead();
 }
 
 void BaseMode::begin()
