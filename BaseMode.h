@@ -3,6 +3,7 @@
 #include "Display.h"
 #include "Timer.h"
 #include "RTC.h"
+#include <Adafruit_BME280.h>
 
 // Abstract class representing a "display mode" of the alarm clock.
 class BaseMode
@@ -18,6 +19,8 @@ protected:
     static CButton buttons[]; // All the buttons used by the alarm clock.
 
     static RTC m_rtc; // It is in this class so the alarm can be cleared from any mode.
+    static Adafruit_BME280 bme; // Since there are two modes that use this sensor it is here to avoid too much abstraction.
+
 public:
     BaseMode(int p_rets[]);
 
@@ -27,6 +30,6 @@ public:
     // Display the current display mode.
     virtual void display() = 0;
 
-    // Starts up the buttons and the display components.
+    // Starts up the buttons, display and the temp/humidity sensor.
     static void begin();
 };

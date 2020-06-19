@@ -30,7 +30,6 @@ void setup()
   }
 
   // This is needed because reasons
-  tempMode.begin();
   BaseMode::begin();
 
   pinMode(9, INPUT_PULLUP); // INT pin of the time module.

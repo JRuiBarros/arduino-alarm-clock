@@ -8,6 +8,7 @@ CButton BaseMode::buttons[] = {b1, b2, b3, b4};
 Display BaseMode::m_display;
 Timer BaseMode::displayTimer{500};
 RTC BaseMode::m_rtc;
+Adafruit_BME280 BaseMode::bme;
 
 BaseMode::BaseMode(int p_rets[]) : rets{p_rets}
 {
@@ -53,4 +54,5 @@ void BaseMode::begin()
     buttons[2].begin();
     buttons[3].begin();
     m_display.begin(DISPLAY_ADDRESS);
+    bme.begin();
 }
