@@ -5,7 +5,7 @@
 // unless you've changed the address jumpers on the back of the display.
 #define DISPLAY_ADDRESS 0x70
 
-// Extension of the Adafruit 7 segment class to accomodate this project's needs.
+// Extension of the Adafruit 7 segment class to accommodate this project's needs.
 class Display : public Adafruit_7segment
 {
 private:
@@ -27,4 +27,7 @@ public:
 
   // Display a temperature value on the screen, including the ºC symbol.
   void displayTemperature(float temp);
+
+  // Display a humidity value on the screen, including the % symbol.
+  void displayHumidity(float humi);
 };

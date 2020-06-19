@@ -76,3 +76,17 @@ void Display::writeToDisplay()
   setBrightness(val);
   writeDisplay();
 }
+
+void Display::displayHumidity(float humi)
+{
+  // Round humidity value to zero decimal cases.
+  int rounded = round(humi);
+
+  printFloat(rounded);
+
+  // Write the % character
+  writeDigitRaw(3, B01100011);
+  writeDigitRaw(4, B01011100);
+
+  writeToDisplay();
+}
